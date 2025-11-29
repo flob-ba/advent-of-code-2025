@@ -1,0 +1,8 @@
+BasedOnStyle: LLVM
+
+AccessModifierOffset: -4
+AlignEscapedNewlines: LeftWithLastLine
+AllowShortFunctionsOnASingleLine: Empty
+ColumnLimit: 0
+IndentWidth: 4
+PointerAlignment: Left
