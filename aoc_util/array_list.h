@@ -14,8 +14,8 @@ void* _create_array_list(size_t stride);
 
 void destroy_array_list(void* self);
 
-size_t array_list_get_capacity(void* self);
-size_t array_list_get_length(void* self);
+size_t array_list_get_capacity(const void* self);
+size_t array_list_get_length(const void* self);
 
 void* _array_list_reserve(void* self, size_t new_min_capacity);
 #define array_list_reserve(self, new_min_capacity)          \

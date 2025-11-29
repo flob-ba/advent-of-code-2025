@@ -25,13 +25,13 @@ void destroy_array_list(void* self) {
     free(header);
 }
 
-size_t array_list_get_capacity(void* self) {
+size_t array_list_get_capacity(const void* self) {
     assert(self != NULL);
     array_list_header* header = (array_list_header*)self - 1;
     return header->capacity;
 }
 
-size_t array_list_get_length(void* self) {
+size_t array_list_get_length(const void* self) {
     assert(self != NULL);
     array_list_header* header = (array_list_header*)self - 1;
     return header->length;
