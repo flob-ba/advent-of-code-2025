@@ -8,6 +8,7 @@ target_include_directories(aoc-25 PRIVATE ${CMAKE_SOURCE_DIR})
 target_sources(aoc-25 PRIVATE
     main.c
     aoc_util/array_list.c
+    aoc_util/puzzle_input.c
     aoc_util/string.c
 )
 
