@@ -29,9 +29,10 @@ void solve(int8_t day, int8_t part) {
 
     int8_t index = 2 * (day - 1) + (part - 1);
 
-    puzzle_input puzzle_input = read_puzzle_input(INPUT_FILENAMES[day - 1]);
-    if (puzzle_input != NULL) {
-        solutions[index] = SOLVE_PFNS[index](read_puzzle_input(INPUT_FILENAMES[day - 1]));
+    puzzle_input puzzle_input = {0};
+    if (read_puzzle_input(&puzzle_input, INPUT_FILENAMES[day - 1])) {
+        solutions[index] = SOLVE_PFNS[index](&puzzle_input);
+        destroy_puzzle_input(&puzzle_input);
         fprintf(stdout, "\r");
     }
 }

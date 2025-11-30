@@ -1,14 +1,14 @@
 #ifndef _AOC_UTIL_PUZZLE_INPUT_H_
 #define _AOC_UTIL_PUZZLE_INPUT_H_
 
+#include <stdbool.h>
 #include <stddef.h>
 
-typedef char** puzzle_input;
+typedef struct puzzle_input {
+    char** lines;
+} puzzle_input;
 
+bool read_puzzle_input(puzzle_input* self, const char* filename);
 void destroy_puzzle_input(puzzle_input* self);
-
-puzzle_input read_puzzle_input(const char* filename);
-
-size_t puzzle_input_get_lines_count(const puzzle_input* self);
 
 #endif
