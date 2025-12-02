@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <time.h>
 
 const char* const INPUT_FILENAMES[12] = {
     "inputs/day_1.txt",
@@ -22,6 +23,7 @@ const char* const INPUT_FILENAMES[12] = {
     "inputs/day_12.txt",
 };
 uint64_t solutions[24] = {0};
+uint64_t durations_in_ms[24] = {0};
 
 void solve(int8_t day, int8_t part) {
     fprintf(stdout, "Solving Day %d Part %d... ", day, part);
@@ -31,7 +33,14 @@ void solve(int8_t day, int8_t part) {
 
     puzzle_input puzzle_input = {0};
     if (read_puzzle_input(&puzzle_input, INPUT_FILENAMES[day - 1])) {
+        struct timespec start;
+        clock_gettime(CLOCK_MONOTONIC, &start);
+
         solutions[index] = SOLVE_PFNS[index](&puzzle_input);
+        struct timespec end;
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        durations_in_ms[index] = (end.tv_sec - start.tv_sec) * 1000 + (end.tv_nsec - start.tv_nsec) / 1000000;
+
         destroy_puzzle_input(&puzzle_input);
         fprintf(stdout, "\r");
     }
@@ -72,7 +81,15 @@ void print_all_solutions() {
         }
         printf("|\n");
         for (int8_t i = 0; i < 4; ++i) {
+            printf("|        | %16ld ms ", durations_in_ms[2 * (4 * j + i)]);
+        }
+        printf("|\n");
+        for (int8_t i = 0; i < 4; ++i) {
             printf("| Part 2 | %19ld ", solutions[2 * (4 * j + i) + 1]);
+        }
+        printf("|\n");
+        for (int8_t i = 0; i < 4; ++i) {
+            printf("|        | %16ld ms ", durations_in_ms[2 * (4 * j + i) + 1]);
         }
         printf("|\n");
         for (int8_t i = 0; i < 4; ++i) {
