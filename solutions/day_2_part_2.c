@@ -36,6 +36,9 @@ uint64_t solve_day_2_part_2(const puzzle_input* puzzle_input) {
             bool is_invalid = false;
             uint64_t digits_count = (uint64_t)log10(i) + 1;
             for (uint64_t sub_digit_count = 1; sub_digit_count <= digits_count / 2; ++sub_digit_count) {
+                if (digits_count % sub_digit_count != 0)
+                    continue;
+
                 uint64_t sub = i / (uint64_t)pow(10, digits_count - sub_digit_count);
                 uint64_t test = sub;
                 uint64_t test_digit_count = sub_digit_count;
