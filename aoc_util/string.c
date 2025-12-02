@@ -96,3 +96,33 @@ void string_erase(char* self, size_t position) {
     memmove((char*)(header + 1) + position, (char*)(header + 1) + position + 1, header->length - position);
     --header->length;
 }
+
+bool string_find(const char* self, char target, size_t start_position, size_t* out_position) {
+    assert(self != NULL);
+    assert(out_position != NULL);
+
+    string_header* header = (string_header*)self - 1;
+    for (size_t i = start_position; i < header->length; ++i) {
+        if (self[i] == target) {
+            *out_position = i;
+            return true;
+        }
+    }
+    return false;
+}
+
+char* string_substring(const char* self, size_t start_position, size_t end_position) {
+    assert(self != NULL);
+    string_header* header = (string_header*)self - 1;
+    assert(start_position <= end_position);
+    assert(end_position < header->length);
+
+    char* substring = create_string();
+    string_reserve(substring, end_position - start_position + 1);
+    string_header* substring_header = (string_header*)substring - 1;
+
+    memcpy(substring, self + start_position, end_position - start_position + 1);
+    substring_header->length = end_position - start_position + 1;
+
+    return substring;
+}

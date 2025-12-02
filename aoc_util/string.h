@@ -1,6 +1,7 @@
 #ifndef _AOC_UTIL_STRING_H_
 #define _AOC_UTIL_STRING_H_
 
+#include <stdbool.h>
 #include <stddef.h>
 
 typedef struct string_header {
@@ -33,5 +34,9 @@ char* _string_insert(char* self, size_t position, char c);
     }
 
 void string_erase(char* self, size_t position);
+
+bool string_find(const char* self, char target, size_t start_position, size_t* out_position);
+
+char* string_substring(const char* self, size_t start_position, size_t end_position);
 
 #endif

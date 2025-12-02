@@ -102,7 +102,11 @@ int32_t main(int32_t argc, char* argv[]) {
         if (1 <= day && day <= 12 && (part == 1 || part == 2)) {
             should_solve_all = false;
             solve(day, part);
-            printf("Day %d - Part %d: %19ld\n", day, part, solutions[2 * (day - 1)]);
+            if (part == 1) {
+                printf("Day %d - Part 1: %19ld\n", day, solutions[2 * (day - 1)]);
+            } else {
+                printf("Day %d - Part 2: %19ld\n", day, solutions[2 * (day - 1) + 1]);
+            }
         }
     }
 
